@@ -1,0 +1,28 @@
+<ion-fab vertical="bottom" horizontal="center" slot="fixed" class="animated fadeInDown">
+  <ion-fab-button (click)="togglePopupMenu()">
+    <ion-ripple-effect></ion-ripple-effect>
+    <ion-icon name="md-apps"></ion-icon>
+  </ion-fab-button>
+</ion-fab>
+
+<div class="popup-menu">
+  <div class="popup-menu-overlay" [ngClass]="{'in': openMenu}"></div>
+  <div class="popup-menu-panel" [ngClass]="{'in': openMenu}">
+    <div class="popup-menu-item" (click)="goToManual()">
+      <ion-icon name="md-book" slot="middle" size="large"></ion-icon>
+      <span>Sign In</span>
+    </div>
+    <div class="popup-menu-item" (click)="goToBookings()">
+      <ion-icon name="md-bookmarks" slot="middle" size="large"></ion-icon>
+      <span>Bookings</span>
+    </div>
+    <div class="popup-menu-item" (click)="goToVisitors()">
+      <ion-icon name="md-people" slot="middle" size="large"></ion-icon>
+      <span>Visitors</span>
+    </div>
+    <!-- <div class="popup-menu-item" (click)="goToHome()">
+      <ion-icon name="md-home" slot="middle" size="large"></ion-icon>
+      <span>Home</span>
+    </div> -->
+  </div>
+</div>

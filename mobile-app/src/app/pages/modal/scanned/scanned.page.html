@@ -1,0 +1,115 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-button size="small" shape="round" (click)="closeModal()" color="light">
+        <ion-icon slot="start" name="close"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>
+    	Visitor Sign In
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content
+      pullingIcon="chevron-down-circle-outline"
+      pullingText="Pull to refresh"
+      refreshingSpinner="circles"
+      refreshingText="Refreshing...">
+    </ion-refresher-content>
+  </ion-refresher>
+  
+  <!-- <img [src]="value"> -->
+  <form [formGroup]="personVisitedForm" (ngSubmit)="signIn()">
+    <div>
+      <ion-title no-padding>
+        <ion-text color="light">
+          <ion-text color="primary" class="fw400" style="font-size: 15px;">Information For:</ion-text><br>
+          <ion-text color="primary" class="fw500">{{personInfo.first_name}} {{personInfo.last_name}}</ion-text>
+        </ion-text>
+      </ion-title>
+    </div>
+
+    <div style="padding-top: 25px;">
+      <ion-text>
+        <ion-text class="fw800" style="font-size: 15px;"><strong>Company Name:</strong></ion-text><br>
+        <ion-text class="fw400" style="font-size: 13px;">{{personInfo.company_name}}</ion-text>
+      </ion-text>
+    </div>
+
+    <div style="padding-top: 15px;" *ngIf="personInfo.email">
+      <ion-text>
+        <ion-text class="fw800" style="font-size: 15px;"><strong>Email:</strong></ion-text><br>
+        <ion-text class="fw400" style="font-size: 13px;">{{personInfo.email}}</ion-text>
+      </ion-text>
+    </div>
+
+    <div style="padding-top: 15px;" *ngIf="personInfo.mobile">
+      <ion-text>
+        <ion-text class="fw800" style="font-size: 15px;"><strong>Mobile Number:</strong></ion-text><br>
+        <ion-text class="fw400" style="font-size: 13px;">{{personInfo.mobile}}</ion-text>
+      </ion-text>
+    </div>
+
+    <div style="padding-top: 15px;">
+      <ion-text>
+        <ion-text class="fw800" style="font-size: 15px;"><strong>Address:</strong></ion-text><br>
+        <ion-text class="fw400" style="font-size: 13px;">{{personInfo.address}}</ion-text>
+      </ion-text>
+    </div>
+    
+    <div style="padding-top: 15px;">
+      <ion-text>
+        <ion-text class="fw800" style="font-size: 15px;"><strong>ID Number:</strong></ion-text><br>
+        <ion-text class="fw400" style="font-size: 13px;">{{personInfo.id_number}}</ion-text>
+      </ion-text>
+    </div>
+
+    <div style="padding-top: 15px;" *ngIf="personInfo.vehicle_reg">
+      <ion-text>
+        <ion-text class="fw800" style="font-size: 15px;"><strong>Vehicle Registration:</strong></ion-text><br>
+        <ion-text class="fw400" style="font-size: 13px;">{{personInfo.vehicle_reg}}</ion-text>
+      </ion-text>
+    </div>
+
+    <div style="padding-top: 15px;">
+      <ion-text>
+        <ion-text class="fw800" style="font-size: 15px;"><strong>Purpose of Visit:</strong></ion-text><br>
+        <ion-text class="fw400" style="font-size: 13px;">{{personInfo.purpose_of_visit}}</ion-text>
+      </ion-text>
+    </div>
+
+    <!-- <div style="padding-top: 15px;">
+      <ion-text>
+        <ion-text class="fw800" style="font-size: 15px;"><strong>Person to be Visited:</strong></ion-text><br>
+        <ion-text class="fw400" style="font-size: 13px;">{{personInfo.person_visited}}</ion-text>
+      </ion-text>
+    </div> -->
+
+    <div style="padding-top: 15px;">
+      <ion-text>
+        <ion-text class="fw800" style="font-size: 15px;"><strong>Booking Date:</strong></ion-text><br>
+        <ion-text class="fw400" style="font-size: 13px;">{{personInfo.date | date: 'dd/MM/yyyy'}}</ion-text>
+      </ion-text>
+    </div>
+
+    <ion-item style="margin-top: 25px">
+      <ion-label color="secondary">Person Visited</ion-label>
+      <ion-select ok-text="Done" cancel-text="Cancel" formControlName="person_visited">
+        <ion-select-option *ngFor="let employee of employee" value="{{employee._id}}">{{employee.first_name}} {{employee.last_name}}</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+
+      <ion-col no-padding>
+        <ion-button expand="clear" type="submit" [disabled]="!personVisitedForm.valid" color="primary" style="width: 100%;" icon-start>
+          Sign In
+        </ion-button>
+      </ion-col>
+  </form>
+
+
+</ion-content>

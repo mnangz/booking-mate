@@ -1,0 +1,41 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button color="secondary"></ion-menu-button>
+    </ion-buttons>
+    <ion-title>
+        <ion-text color="light">
+          <ion-text color="light" class="fw700">Booking Mate</ion-text>
+        </ion-text>
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div *ngFor="let company of company" style="text-align: center;">
+    <img src="{{company.company_logo}}" style="height: 80px; margin-top: 50px;">
+  </div>
+  
+  <div class="wrap" style="height: 70%; flex-direction: column;" *ngIf="staff">
+    <ion-text style="text-align: center; margin-bottom: 60px; font-size: 20px;">Hi, {{staff.first_name}}</ion-text>
+    <button class="htbutton" (click) ="scanCode()">
+      <ion-ripple-effect></ion-ripple-effect>
+      <ion-icon name="md-barcode" slot="middle" size="large"></ion-icon><br><br>
+      <span>Scan badge</span>
+   </button>
+   <ion-text style="margin-top: 25px; font-size: 14px;">Please ensure camera lens is clean</ion-text>
+  </div>
+  
+  
+  <popmenu></popmenu>
+</ion-content>
+
+<!-- <barcode-scanner-livestream
+      type="code_128"
+      (valueChanges)="onValueChanges($event)"
+      (started)="(onStarted)"
+    ></barcode-scanner-livestream>
+    <div [hidden]="!barcodeValue">
+      {{ barcodeValue }}
+    </div> -->
+  
